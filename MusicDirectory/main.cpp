@@ -18,14 +18,23 @@
 
 using namespace std;
 
-void commands(vector<Person*>& people, vector<Song*>& songs, vector<Album*>& albums, vector<RecordLabel*>& recordLabels, vector<Playlist*>& playlist) {
+void commands(vector<Person*>& people, vector<Song*>& songs, vector<Album*>& albums,
+              vector<RecordLabel*>& recordLabels, vector<Playlist*>& playlist) {
     bool stop = false;
     while (!stop) {
         cout << "Welcome to this Music Program! Enter 'c' to print commands\n";
         string command;
         cin >> command;
         if (command == "c") {
-            cout << "To make a new Fan, please enter 'f' following the name and their introdction.\nTo make a new Artist please enter 'ar' following thier name, go to introduction, and adlib.\nTo make a new Album please enter 'al' following the title of the album and the year it came out.\nTo mske a new Record Label, please enter 'rl' following the name and the year founded.\nTo make a new Song, please enter 's' following the name of the song.\nTo make a new Playlist, please enter 'pl' following the name of the playlist, and the genre.\nTo exit, please enter 'exit'\n";
+            cout << "To make a new Fan, please enter 'f' following the name and"
+            << "their introdction.\n; To make a new Artist please enter 'ar'"
+            << "following thier name, go to introduction, and adlib.\nTo make"
+            << "a new Album please enter 'al' following the title of the album"
+            << "and the year it came out.\nTo mske a new Record Label, please enter"
+            << "'rl' following the name and the year founded.\nTo make a new Song, please"
+            << "enter 's' following the name of the song.\nTo make a new Playlist, please "
+            << "enter 'pl' following the name of the playlist, and the genre.\nTo exit, please "
+            << "enter 'exit'\n";
         }
         string commandnext;
         cin >> commandnext;
