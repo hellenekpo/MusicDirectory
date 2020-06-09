@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <map>
 #include <set>
+#include <fstream>
 
 #include "Fan.h"
 #include "Artist.h"
@@ -27,14 +28,18 @@ void commands(vector<Person*>& people, vector<Song*>& songs, vector<Album*>& alb
         cin >> command;
         if (command == "c") {
             cout << "To make a new Fan, please enter 'f' following the name and "
-            << "their introduction.\nTo make a new Artist please enter 'art' "
-            << "following thier name, go to introduction, and adlib.\nTo make"
+            << "their introduction. If you want to see the current "
+            << "fan(s) please enter 'printf'.\nTo make a new Artist please enter 'art' "
+            << "following their name, go to introduction, and adlib. If you want to see the current "
+            << "artist(s), please enter 'printart'.\nTo make "
             << "a new Album please enter 'al' following the title of the album "
-            << "and the year it came out.\nTo mske a new Record Label, please enter "
-            << "'rl' following the name and the year founded.\nTo make a new Song, please "
-            << "enter 's' following the name of the song.\nTo make a new Playlist, please "
-            << "enter 'pl' following the name of the playlist, and the genre.\nTo exit, please "
-            << "enter 'exit'\n";
+            << "and the year it came out. If you want to see the current album(s), please enter 'printal'. "
+            << "\nTo mske a new Record Label, please enter 'rl' following the name and the year founded. "
+            << "If you want to see the current record label(s), please enter 'printrl'.\nTo make a new Song, "
+            << "please enter 's' following the name of the song. If you want to see the current song(s), "
+            << "please enter 'prints'.\nTo make a new Playlist, please enter 'pl' following the name of the "
+            << "playlist, and the genre. If you eant to see the current playlist(s), please esnter 'printpl'"
+            << "\nTo exit, please enter 'exit'\n";
         }
         string commandnext;
         cin >> commandnext;
@@ -45,6 +50,13 @@ void commands(vector<Person*>& people, vector<Song*>& songs, vector<Album*>& alb
             string title, info1, info2;
             int num;
             cin >> title;
+            for (size_t i = 0; i < title.size(); ++i) {
+                if (i != 0 && ('Z' > title[i]) && 'A' < title[i]) {
+                    title.insert(i, " ");
+                    ++i;
+                    //cout << title[i];
+                }
+            }
             if (commandnext == "al" || commandnext == "rl") {
                 cin >> num;
                 if (commandnext == "al") {
@@ -69,6 +81,13 @@ void commands(vector<Person*>& people, vector<Song*>& songs, vector<Album*>& alb
                 else {
                     if (commandnext == "f" || commandnext == "pl" || commandnext == "art") {
                         cin >> info1;
+                        for (size_t i = 0; i < info1.size(); ++i) {
+                            if (i != 0 && ('Z' > info1[i]) && 'A' < info1[i]) {
+                                info1.insert(i, " ");
+                                ++i;
+                                //cout << info1[i];
+                            }
+                        }
                         if (commandnext == "f") {
                             Fan* newFan = new Fan(title, info1);
                             people.push_back(newFan);
@@ -103,6 +122,16 @@ int main() {
     vector<RecordLabel*> recordLabels;
     vector<Playlist*> playlists;
     commands(people, songs, albums, recordLabels, playlists);
+    ofstream ofs;
+    ofs.open("fileinfo.txt");
+    if (!ofs) {
+        cerr << "Couldn't open the file!\n";
+    }
+    cout << "Writing Songs onto file...\n";
+    ofs << "Songs\n";
+    for (const Song* song : songs) {
+        ofs << song->getTitle() << "\n";
+    }
 //    Fan* Hellen = new Fan("Hellen", "I am from Houston, Texas!");
 //    cout << *Hellen;
 //    Artist* TylerTheCreator = new Artist("Tyler, The Creator", "What's good", "Aiyyo");
