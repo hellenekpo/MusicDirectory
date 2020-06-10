@@ -8,6 +8,7 @@
 #include <map>
 #include <set>
 #include <fstream>
+#include <ctime>
 
 #include "Fan.h"
 #include "Artist.h"
@@ -123,14 +124,37 @@ int main() {
     vector<Playlist*> playlists;
     commands(people, songs, albums, recordLabels, playlists);
     ofstream ofs;
-    ofs.open("fileinfo.txt");
+    ofs.open("fileinfo.txt", ios::app);
     if (!ofs) {
         cerr << "Couldn't open the file!\n";
     }
-    cout << "Writing Songs onto file...\n";
-    ofs << "Songs\n";
+    time_t tt;
+    struct tm * ti;
+    time(&tt);
+    ti = localtime(&tt);
+    cout << "Current Day, Date, and Time is: "
+    << asctime(ti);
+    cout << "Writing Data onto file...\n";
+    ofs << asctime(ti);
+    if (songs.size() != 0) ofs << "Songs\n";
     for (const Song* song : songs) {
         ofs << song->getTitle() << "\n";
+    }
+    if (people.size() != 0) ofs << "People\n";
+    for (const Person* person : people) {
+        ofs << person->getName() << "\n";
+    }
+    if (albums.size() != 0) ofs << "Albums\n";
+    for (const Album* album : albums) {
+        ofs << album->getTitle() << "\n";
+    }
+    if (recordLabels.size() != 0) ofs << "Record Labels\n";
+    for (const RecordLabel* recordl : recordLabels) {
+        ofs << recordl->getName() << "\n";
+    }
+    if (playlists.size() != 0) ofs << "Playlists\n";
+    for (const Playlist* playlist : playlists) {
+        ofs << playlist->getTitle() << "\n";
     }
 //    Fan* Hellen = new Fan("Hellen", "I am from Houston, Texas!");
 //    cout << *Hellen;
