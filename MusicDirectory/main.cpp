@@ -37,7 +37,8 @@ void commands(vector<Person*>& people, vector<Song*>& songs, vector<Album*>& alb
             << "and the year it came out. If you want to see the current album(s), please enter 'printal'. "
             << "\nTo mske a new Record Label, please enter 'rl' following the name and the year founded. "
             << "If you want to see the current record label(s), please enter 'printrl'.\nTo make a new Song, "
-            << "please enter 's' following the name of the song. If you want to see the current song(s), "
+            << "please enter 's' following the name of the song and the artist. "
+            << "If you want to see the current song(s), "
             << "please enter 'prints'.\nTo make a new Playlist, please enter 'pl' following the name of the "
             << "playlist, and the genre. If you eant to see the current playlist(s), please esnter 'printpl'"
             << "\nTo exit, please enter 'exit'\n";
@@ -46,6 +47,31 @@ void commands(vector<Person*>& people, vector<Song*>& songs, vector<Album*>& alb
         cin >> commandnext;
         if (commandnext == "exit") {
             stop = true;
+        }
+        else if (commandnext == "printal") {
+            for (const Album* album : albums) {
+                cout << *album;
+            }
+        }
+        else if (commandnext == "printart") {
+        }
+        else if (commandnext == "printf") {
+            
+        }
+        else if (commandnext == "printrl") {
+            for (const RecordLabel* rl : recordLabels) {
+                cout << *rl;
+            }
+        }
+        else if (commandnext == "prints") {
+            for (const Song* song : songs) {
+                cout << *song << endl;
+            }
+        }
+        else if (commandnext == "printal") {
+            for (const Album* album : albums) {
+                cout << *album;
+            }
         }
         else {
             string title, info1, info2;
@@ -156,6 +182,8 @@ int main() {
     for (const Playlist* playlist : playlists) {
         ofs << playlist->getTitle() << "\n";
     }
+    
+    cout << "Removing objects from the heap...\n";
 //    Fan* Hellen = new Fan("Hellen", "I am from Houston, Texas!");
 //    cout << *Hellen;
 //    Artist* TylerTheCreator = new Artist("Tyler, The Creator", "What's good", "Aiyyo");

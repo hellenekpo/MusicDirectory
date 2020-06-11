@@ -24,6 +24,7 @@ public:
 protected:
     std::string name;
     std::string intro;
+    bool isFan;
     
 };
 

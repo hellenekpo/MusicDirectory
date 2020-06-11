@@ -11,7 +11,7 @@ ostream& operator << (ostream& os, const Album& theAlbum) {
     os << "This album has " << theAlbum.tracklist.size() << " songs\n";
     for (const Song* song: theAlbum.tracklist) {
         int count = 0;
-        os << count << ": " << *(song);
+        os << count << ": " << *(song) << endl;
     }
     return os;
 }

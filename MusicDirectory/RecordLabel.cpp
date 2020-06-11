@@ -15,7 +15,7 @@ ostream& operator << (ostream& os, const RecordLabel& theRecord) {
     for (auto artist : theRecord.history) {
         for (auto info : artist.second) {
             if (info.second == true) {
-                os << artist.first->getName() << ": signed " << info.first;
+                os << artist.first->getName() << ": signed in " << info.first << endl;
             }
         }
     }
@@ -54,7 +54,7 @@ void RecordLabel::pastArtists() const {
     for (auto artist : history) {
         for (auto info : artist.second) {
             if (info.second == false) {
-                cout << artist.first->getName() << ": signed " << info.first;
+                cout << artist.first->getName() << ": signed in " << info.first;
             }
         }
     }

@@ -5,7 +5,7 @@ using namespace std;
 
 
 ostream& operator << (ostream& os, const Song& theSong) {
-    os << "Title:" << theSong.title << "by " << theSong.artist->getName();
+    os << "Title: " << theSong.title << "by " << theSong.artist->getName();
     if (theSong.featuredArtist != nullptr) {
         os << "featuring " << theSong.featuredArtist->getName();
     }
