@@ -54,9 +54,18 @@ void commands(vector<Person*>& people, vector<Song*>& songs, vector<Album*>& alb
             }
         }
         else if (commandnext == "printart") {
+            for (const Person* person : people) {
+                if (!person->isPersonFan()) {
+                    cout << "Artist " << *person;
+                }
+            }
         }
         else if (commandnext == "printf") {
-            
+            for (const Person* person : people) {
+                if (person->isPersonFan()) {
+                    cout << "Fan " << *person;
+                }
+            }
         }
         else if (commandnext == "printrl") {
             for (const RecordLabel* rl : recordLabels) {
@@ -184,6 +193,14 @@ int main() {
     }
     
     cout << "Removing objects from the heap...\n";
+    for (const Song* song : songs) {
+        delete song;
+        song = nullptr;
+    }
+    for (const Album* album : albums) {
+        delete album;
+        album = nullptr;
+    }
 //    Fan* Hellen = new Fan("Hellen", "I am from Houston, Texas!");
 //    cout << *Hellen;
 //    Artist* TylerTheCreator = new Artist("Tyler, The Creator", "What's good", "Aiyyo");

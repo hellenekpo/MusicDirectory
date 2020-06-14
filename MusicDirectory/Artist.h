@@ -18,9 +18,11 @@ class Song;
 
 
 class Person {
+    friend std::ostream& operator << (std::ostream& os, const Person& thePerson);
 public:
-    Person(const std::string& name, const std::string& intro) : name(name), intro(intro) {}
+    Person(const std::string& name, const std::string& intro, bool isFan) : name(name), intro(intro), isFan(isFan) {}
     virtual const std::string& getName() const = 0;
+    bool isPersonFan() const;
 protected:
     std::string name;
     std::string intro;

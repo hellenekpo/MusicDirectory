@@ -14,7 +14,7 @@ const string& Fan:: getName() const {
     return Person::getName();
 }
 
-Fan::Fan(const string& name, const string& intro) : Person(name, intro), playlist(nullptr), favoriteArtist(nullptr) {}
+Fan::Fan(const string& name, const string& intro) : Person(name, intro, true), playlist(nullptr), favoriteArtist(nullptr) {}
 
 bool Fan::addToPlaylist(Song& song) {
     return playlist->addSong(song);

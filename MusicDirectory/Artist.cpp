@@ -12,6 +12,11 @@ ostream& operator << (ostream& os, const Artist& theArtist) {
     return os;
 }
 
+ostream& operator << (ostream& os, const Person& thePerson) {
+    os << "name: " << thePerson.name << endl;
+    return os;
+}
+
 const string& Person:: getName() const {
     return name;
 }
@@ -19,10 +24,14 @@ const string& Person:: getName() const {
 const string& Artist:: getName() const {
     return Person::getName();
 }
-Artist::Artist(const string& name, const string& intro, const string& adlib) : Person(name, intro), adlib(adlib) {}
+Artist::Artist(const string& name, const string& intro, const string& adlib) : Person(name, intro, false), adlib(adlib) {}
 
 void Artist::introduce() const {
     cout << intro;
+}
+
+bool Person:: isPersonFan() const {
+    return isFan;
 }
 
 bool Artist::addAlbum(Album& album) {
